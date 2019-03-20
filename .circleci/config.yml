@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:latest
+    working_directory: /go/src/auto-refailover
+    steps:
+      - checkout
+      - run:
+          name: Install node
+          command: |
+            curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+      - run:
+          name: Install awscli
+          command: |
+            sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Install serverless
+          command: |
+            sudo npm install -g serverless
+      - run:
+          name: Make
+          command: |
+            make deploy
