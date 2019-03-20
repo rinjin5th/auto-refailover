@@ -23,4 +23,5 @@ jobs:
           name: Make
           command: |
             export GO111MODULE=on
-            go build -ldflags="-s -w" -o bin/autohealing 
+            env GOOS=linux go build -ldflags="-s -w" -o bin/autohealing 
+            sls deploy --stage prd
