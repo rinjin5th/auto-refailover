@@ -22,4 +22,5 @@ jobs:
       - run:
           name: Make
           command: |
-            make deploy
+            export GO111MODULE=on
+            go build -ldflags="-s -w" -o bin/autohealing 
